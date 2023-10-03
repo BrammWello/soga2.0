@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "288543657496",
+    "project_id": "soga-58a73",
+    "storage_bucket": "soga-58a73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288543657496:android:442301d017dfbc4bd8bd6d",
+        "android_client_info": {
+          "package_name": "com.devbramm.soga"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR5K9tYl06dWPX--S6htyT2OFTn740mUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
