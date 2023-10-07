@@ -18,5 +18,18 @@
 
     <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="cornerRadius">4dp</item>
     </style>
+
+    <style name="AppTextInputStyle">
+        <item name="android:background">@drawable/textinput_background</item> <!-- Use a drawable for the button background -->
+        <item name="android:paddingVertical">8dp</item> <!-- Padding -->
+    </style>
+
+    <style name="AppTextInputStyleEdittext">
+        <item name="android:background">@null</item> <!-- Use a drawable for the button background -->
+        <item name="android:layout_marginHorizontal">8dp</item> <!-- Padding -->
+        <item name="android:ems">10</item> <!-- Padding -->
+    </style>
+
 </resources>

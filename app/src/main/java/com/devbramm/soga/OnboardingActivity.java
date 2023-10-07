@@ -21,9 +21,7 @@ public class OnboardingActivity extends AppCompatActivity {
     private OnboardingAdapter adapter;
     private LinearLayout layout_dots;
     private TextView[] tv_dots;
-
     private Button startButton;
-
     private SharedPreferences sharedPreferences;
 
     @Override

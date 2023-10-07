@@ -34,7 +34,7 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/colorSecondary"
         android:text="Next"
-        app:cornerRadius="8dp" />
+        app:cornerRadius="4dp" />
 
 </RelativeLayout>
 

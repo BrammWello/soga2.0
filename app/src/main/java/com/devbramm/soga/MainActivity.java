@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (!hasUserCompletedOnboarding(this)) {
             startActivity(new Intent(MainActivity.this,OnboardingActivity.class));
             finish();
+        } else {
+            startActivity(new Intent(MainActivity.this,OTPVerificationActivity.class));
+            finish();
         }
     }
 
