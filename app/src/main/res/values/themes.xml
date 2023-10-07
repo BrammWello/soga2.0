@@ -19,6 +19,10 @@
     <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="cornerRadius">4dp</item>
+        <item name="backgroundTint">@color/colorSecondary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <style name="AppTextInputStyle">
