@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this,OnboardingActivity.class));
             finish();
         } else {
-            startActivity(new Intent(MainActivity.this,OTPVerificationActivity.class));
+            startActivity(new Intent(MainActivity.this,ProfileSetupActivity.class));
             finish();
         }
     }
