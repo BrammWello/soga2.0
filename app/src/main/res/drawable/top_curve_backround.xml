@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- res/drawable/curved_bottom_corners.xml -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:topLeftRadius="0dp"
-    android:topRightRadius="0dp"
-    android:bottomLeftRadius="16dp"
-    android:bottomRightRadius="16dp" />  <!-- Set bottom right corner radius to 16dp -->
-    <solid android:color="@color/colorSecondary" /> <!-- Background color (adjust as needed) -->
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Layer for the background image -->
+    <item android:drawable="@drawable/spinkles_bitmapper" />
+
+    <!-- Layer for the curved shape -->
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <corners
+                android:topLeftRadius="0dp"
+                android:topRightRadius="0dp"
+                android:bottomLeftRadius="32dp"
+                android:bottomRightRadius="32dp" />
+        </shape>
+    </item>
+</layer-list>
