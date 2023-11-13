@@ -16,7 +16,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
         findViewById(R.id.finish_setup_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileSetupActivity.this, MainActivity.class));
+                startActivity(new Intent(ProfileSetupActivity.this, HomePageActivity.class));
             }
         });
     }
