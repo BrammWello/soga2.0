@@ -15,4 +15,9 @@
         android:enabled="true"
         android:icon="@drawable/phone_flip"
         android:title="Calls"/>
+    <item
+        android:id="@+id/item_4"
+        android:enabled="true"
+        android:icon="@drawable/user"
+        android:title="Profile"/>
 </menu>

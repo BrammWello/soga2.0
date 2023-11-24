@@ -66,7 +66,7 @@
                     android:id="@+id/imageView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/avatar_placeholder" />
+                    app:srcCompat="@drawable/bramm_cartoon" />
             </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
 
