@@ -1,25 +1,34 @@
 package com.devbramm.soga;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.devbramm.soga.adapters.ChatMessagesAdapter;
 import com.devbramm.soga.adapters.ImageStatusTopAdapter;
+import com.devbramm.soga.models.ChatItemList;
 import com.google.android.material.carousel.CarouselLayoutManager;
 
 import java.util.ArrayList;
 
 public class HomePageActivity extends AppCompatActivity {
 
-    RecyclerView carouselRecyclerView;
+    RecyclerView carouselRecyclerView, chatsMessageRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        //chats section messages recycler configs
+        chatsMessageRecyclerView = findViewById(R.id.chats_message_recyclerview);
+        // Set up the RecyclerView with layout manager and adapter
+        LinearLayoutManager chatsLayoutManager = new LinearLayoutManager(this);
+        chatsMessageRecyclerView.setLayoutManager(chatsLayoutManager);
 
         carouselRecyclerView = findViewById(R.id.recycler);
         final CarouselLayoutManager layoutManager = new CarouselLayoutManager();
@@ -45,5 +54,27 @@ public class HomePageActivity extends AppCompatActivity {
                 Toast.makeText(HomePageActivity.this, "CLicked Toast", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Create a list of data items
+        ArrayList<ChatItemList> chatMessagesList = new ArrayList<>();
+        chatMessagesList.add(new ChatItemList("Alice", "What time is the meeting?", "3:15 PM"));
+        chatMessagesList.add(new ChatItemList("John Doe", "I'll be late for the party", "6:30 PM"));
+        chatMessagesList.add(new ChatItemList("Emma", "Can you send me the report?", "11:05 AM"));
+        chatMessagesList.add(new ChatItemList("Sarah", "Let's go for a walk", "5:50 PM"));
+        chatMessagesList.add(new ChatItemList("Michael", "How was your day?", "7:20 AM"));
+        chatMessagesList.add(new ChatItemList("Olivia", "Do you have any plans for the weekend?", "2:55 PM"));
+        chatMessagesList.add(new ChatItemList("David", "See you later!", "8:10 PM"));
+        chatMessagesList.add(new ChatItemList("Sophie", "I can't wait to see you!", "10:30 AM"));
+        chatMessagesList.add(new ChatItemList("Max", "Let's grab lunch together", "1:20 PM"));
+        chatMessagesList.add(new ChatItemList("Emily", "Did you watch the latest episode?", "4:45 PM"));
+        chatMessagesList.add(new ChatItemList("Olivia", "Do you have any plans for the weekend?", "2:55 PM"));
+        chatMessagesList.add(new ChatItemList("David", "See you later!", "8:10 PM"));
+        chatMessagesList.add(new ChatItemList("Sophie", "I can't wait to see you!", "10:30 AM"));
+        chatMessagesList.add(new ChatItemList("Max", "Let's grab lunch together", "1:20 PM"));
+        chatMessagesList.add(new ChatItemList("Emily", "Did you watch the latest episode?", "4:45 PM"));
+
+        //get the adapter for chats section
+        ChatMessagesAdapter chatMessagesAdapter = new ChatMessagesAdapter(this, chatMessagesList);
+        chatsMessageRecyclerView.setAdapter(chatMessagesAdapter);
     }
 }
