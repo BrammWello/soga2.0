@@ -1,6 +1,7 @@
 package com.devbramm.soga.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.devbramm.soga.ChatMessageActivity;
 import com.devbramm.soga.R;
 import com.devbramm.soga.models.ChatItemList;
 
@@ -32,7 +34,12 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ChatMessagesAdapter.ViewHolder holder, int position) {
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ChatMessageActivity.class));
+            }
+        });
     }
 
     @Override

@@ -1,0 +1,14 @@
+<!-- res/drawable/rounded_rectangle.xml -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer Rectangle with Rounded Corners -->
+    <solid android:color="#F5F5F5"/> <!-- Almost white color -->
+    <corners android:radius="8dp"/> <!-- Adjust the radius for rounded corners -->
+
+    <!-- Border for the Rectangle -->
+    <stroke
+        android:width="1dp"
+        android:color="#E0E0E0"/> <!-- Slightly darker color for the border -->
+
+</shape>

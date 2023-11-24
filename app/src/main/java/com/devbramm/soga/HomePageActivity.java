@@ -76,5 +76,7 @@ public class HomePageActivity extends AppCompatActivity {
         //get the adapter for chats section
         ChatMessagesAdapter chatMessagesAdapter = new ChatMessagesAdapter(this, chatMessagesList);
         chatsMessageRecyclerView.setAdapter(chatMessagesAdapter);
+
+
     }
 }
