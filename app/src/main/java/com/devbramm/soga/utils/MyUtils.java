@@ -11,6 +11,7 @@ public class MyUtils {
     public static class ViewDialog {
         public void showDialog(Activity activity, String msg){
             final Dialog dialog = new Dialog(activity);
+            dialog.dismiss();
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.util_dialog_layout);
 

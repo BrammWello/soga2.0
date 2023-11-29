@@ -108,7 +108,7 @@ public class OnboardingActivity extends AppCompatActivity {
     private void updateButtonText(int position) {
         if (position == adapter.getCount() - 1) {
             // If at the last page, change the button text to "Started"
-            startButton.setText("Started");
+            startButton.setText("Start Soga");
         } else {
             // Otherwise, set it to your initial text
             startButton.setText("Next"); // Replace with your initial text

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -12,17 +13,40 @@ import com.devbramm.soga.adapters.ChatMessagesAdapter;
 import com.devbramm.soga.adapters.ImageStatusTopAdapter;
 import com.devbramm.soga.models.ChatItemList;
 import com.google.android.material.carousel.CarouselLayoutManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class HomePageActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+
     RecyclerView carouselRecyclerView, chatsMessageRecyclerView;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null){
+            startActivity(new Intent(this, OTPVerificationActivity.class));
+            finish();
+        } else if (true){
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //chats section messages recycler configs
         chatsMessageRecyclerView = findViewById(R.id.chats_message_recyclerview);
