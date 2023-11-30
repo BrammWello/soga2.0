@@ -20,6 +20,13 @@
         <item name="android:background">@null</item>
     </style>
 
+    <style name="MenuTextStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="RobotoTextInputViewStyle" parent="">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">10sp</item>

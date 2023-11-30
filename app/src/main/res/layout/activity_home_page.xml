@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/subtle_prism"
+        android:background="@drawable/top_gradient_background"
         android:minHeight="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -30,17 +30,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/search"
-            app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView5" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
@@ -54,6 +43,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="28dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView5"
+            app:srcCompat="@drawable/comment_alt_medical" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -79,5 +78,148 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
         tools:listitem="@layout/chat_message_item_layout" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:layout_constraintBottom_toBottomOf="@+id/chats_message_recyclerview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="New Chat"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Search name or number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_rectangle_with_slightwhite_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/users" />
+
+                <ImageView
+                    android:id="@+id/imageView22"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView21"
+                    app:layout_constraintStart_toStartOf="@+id/imageView21"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView21"
+                    app:srcCompat="@drawable/users_community" />
+
+                <ImageView
+                    android:id="@+id/imageView23"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView21"
+                    app:layout_constraintStart_toStartOf="@+id/imageView21"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView22"
+                    app:srcCompat="@drawable/megaphone" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    style="@style/MenuTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="New Group"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+                <ImageView
+                    android:id="@+id/imageView21"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView9"
+                    app:layout_constraintStart_toStartOf="@+id/imageView9"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView9"
+                    app:srcCompat="@drawable/user_add" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    style="@style/MenuTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="New Contact"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView21"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toTopOf="@+id/imageView21" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    style="@style/MenuTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="New Community"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView22"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toTopOf="@+id/imageView22" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    style="@style/MenuTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="New Broadcast"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView23"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toTopOf="@+id/imageView23" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
