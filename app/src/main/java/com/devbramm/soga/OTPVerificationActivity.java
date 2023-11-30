@@ -56,7 +56,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
     private Button verifyBtn, getOTPBtn;
     ConstraintLayout progressBarLayout, progressBarLayoutContainer, otpTextViewLayout;
 
-    MyUtils.ViewDialog dialogHelper;
+    private MyUtils.ViewDialog dialogHelper;
 
     @Override
     protected void onStart() {
@@ -140,6 +140,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
         verifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String phone = etPhone.getText().toString().trim();
                 String otpCode = etOTP.getText().toString().trim();
                 if (otpCode.length() != 6){
                     dialogHelper.showDialog(OTPVerificationActivity.this, "Sorry, the OTP code you entered is wrong"); // 'this' refers to the current activity

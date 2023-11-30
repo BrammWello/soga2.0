@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -35,8 +36,9 @@ public class HomePageActivity extends AppCompatActivity {
         if (currentUser == null){
             startActivity(new Intent(this, OTPVerificationActivity.class));
             finish();
-        } else if (true){
-
+        } else if (Objects.equals(currentUser.getDisplayName(), "")) {
+            startActivity(new Intent(this, ProfileSetupActivity.class));
+            finish();
         }
     }
 
