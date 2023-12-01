@@ -9,6 +9,8 @@ import android.provider.ContactsContract;
 import com.devbramm.soga.models.ContactItemList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ContactHelperUtils {
 
@@ -22,7 +24,7 @@ public class ContactHelperUtils {
                 ContactsContract.CommonDataKinds.Phone.NUMBER
         };
 
-        Cursor cursor = contentResolver.query(uri, projection, null, null, null);
+        Cursor cursor = contentResolver.query(uri, projection, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
 
         if (cursor != null && cursor.moveToFirst()) {
             int nameColumnIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
@@ -42,6 +44,14 @@ public class ContactHelperUtils {
 
             cursor.close();
         }
+
+        // Sort the contacts alphabetically by display name
+        Collections.sort(contactsList, new Comparator<ContactItemList>() {
+            @Override
+            public int compare(ContactItemList contact1, ContactItemList contact2) {
+                return contact1.getContactName().compareToIgnoreCase(contact2.getContactName());
+            }
+        });
 
         return contactsList;
     }

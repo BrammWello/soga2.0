@@ -34,7 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class HomePageActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity implements ContactListAdapter.OnContactSelectedListener {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -73,7 +73,6 @@ public class HomePageActivity extends AppCompatActivity {
         frequentlyContactedRecyclerview = findViewById(R.id.frequently_contacted_recycler_view);
         LinearLayoutManager contactsFrequentlyLayoutManager = new LinearLayoutManager(this);
         frequentlyContactedRecyclerview.setLayoutManager(contactsFrequentlyLayoutManager);
-
 
         //check permissions first
         // Check the SDK version and whether the permission is already granted or not.
@@ -183,11 +182,20 @@ public class HomePageActivity extends AppCompatActivity {
             // Create a list of data items
             ArrayList<ContactItemList> contactsFrequentlyMessagesList = ContactHelperUtils.getContacts(this);
             ContactListAdapter contactListAdapter = new ContactListAdapter(this, contactsFrequentlyMessagesList);
+            contactListAdapter.setOnContactSelectedListener(this);
             RecyclerView frequentlyContactedRecyclerview = findViewById(R.id.frequently_contacted_recycler_view);
             frequentlyContactedRecyclerview.setLayoutManager(new LinearLayoutManager(this));
             frequentlyContactedRecyclerview.setAdapter(contactListAdapter);
         } catch (Exception e) {
             Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onContactSelected() {
+        // Close the Bottom Sheet when a contact is selected
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
     }
 
