@@ -20,6 +20,9 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
     Context context;
     ArrayList<ChatItemList> chatItemLists;
 
+    public ChatMessagesAdapter() {
+    }
+
     public ChatMessagesAdapter(Context context, ArrayList<ChatItemList> chatItemLists) {
         this.context = context;
         this.chatItemLists = chatItemLists;

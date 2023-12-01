@@ -142,7 +142,7 @@
             app:srcCompat="@drawable/add" />
 
         <ImageView
-            android:id="@+id/imageView19"
+            android:id="@+id/btn_send_new_message"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
@@ -160,7 +160,7 @@
             android:background="@drawable/chat_keyboard_background"
             android:paddingTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView19"
+            app:layout_constraintEnd_toStartOf="@+id/btn_send_new_message"
             app:layout_constraintStart_toEndOf="@+id/imageView18">
 
             <ImageView
@@ -174,7 +174,7 @@
                 app:srcCompat="@drawable/folder_open" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/edt_chat_message_content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -191,19 +191,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="409dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_area_recycler_view"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </androidx.core.widget.NestedScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+        tools:listitem="@layout/chat_item_sender_item_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
