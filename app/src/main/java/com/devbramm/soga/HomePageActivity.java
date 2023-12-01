@@ -1,17 +1,30 @@
 package com.devbramm.soga;
 
+import android.Manifest;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.devbramm.soga.adapters.ChatMessagesAdapter;
+import com.devbramm.soga.adapters.ContactListAdapter;
 import com.devbramm.soga.adapters.ImageStatusTopAdapter;
 import com.devbramm.soga.models.ChatItemList;
+import com.devbramm.soga.models.ContactItemList;
+import com.devbramm.soga.utils.ContactHelperUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.carousel.CarouselLayoutManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +39,13 @@ public class HomePageActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    RecyclerView carouselRecyclerView, chatsMessageRecyclerView;
+    RecyclerView carouselRecyclerView, chatsMessageRecyclerView, frequentlyContactedRecyclerview;
+
+    private ConstraintLayout mBottomSheetLayout;
+    private BottomSheetBehavior sheetBehavior;
+    private ImageView header_Arrow_Image;
+    private static final int REQUEST_READ_CONTACTS_PERMISSION = 123;
+
 
     @Override
     protected void onStart() {
@@ -49,6 +68,58 @@ public class HomePageActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //new contact recycler views
+        frequentlyContactedRecyclerview = findViewById(R.id.frequently_contacted_recycler_view);
+        LinearLayoutManager contactsFrequentlyLayoutManager = new LinearLayoutManager(this);
+        frequentlyContactedRecyclerview.setLayoutManager(contactsFrequentlyLayoutManager);
+
+
+        //check permissions first
+        // Check the SDK version and whether the permission is already granted or not.
+        // Check if the READ_CONTACTS permission is granted
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    REQUEST_READ_CONTACTS_PERMISSION);
+        } else {
+            // Permission is already granted, proceed with loading contacts
+            loadContacts();
+        }
+
+        try {
+            // Beginning of bottom sheet configs
+            mBottomSheetLayout = findViewById(R.id.bottom_sheet_new_contacts_layout);
+            sheetBehavior = BottomSheetBehavior.from(mBottomSheetLayout);
+            header_Arrow_Image = findViewById(R.id.new_message_contacts_btn);
+
+            header_Arrow_Image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    } else {
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    }
+                }
+            });
+
+            sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                }
+
+                @Override
+                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                    header_Arrow_Image.setRotation(slideOffset * 180);
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
 
         //chats section messages recycler configs
         chatsMessageRecyclerView = findViewById(R.id.chats_message_recyclerview);
@@ -104,5 +175,35 @@ public class HomePageActivity extends AppCompatActivity {
         chatsMessageRecyclerView.setAdapter(chatMessagesAdapter);
 
 
+    }
+
+    private void loadContacts() {
+        //get the adapter for contacts section
+        try {
+            // Create a list of data items
+            ArrayList<ContactItemList> contactsFrequentlyMessagesList = ContactHelperUtils.getContacts(this);
+            ContactListAdapter contactListAdapter = new ContactListAdapter(this, contactsFrequentlyMessagesList);
+            RecyclerView frequentlyContactedRecyclerview = findViewById(R.id.frequently_contacted_recycler_view);
+            frequentlyContactedRecyclerview.setLayoutManager(new LinearLayoutManager(this));
+            frequentlyContactedRecyclerview.setAdapter(contactListAdapter);
+        } catch (Exception e) {
+            Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_READ_CONTACTS_PERMISSION) {
+            // Check if the permission is granted
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, proceed with loading contacts
+                loadContacts();
+            } else {
+                // Permission denied, show a message or handle accordingly
+                Toast.makeText(this, "Permission denied. Cannot load contacts.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
