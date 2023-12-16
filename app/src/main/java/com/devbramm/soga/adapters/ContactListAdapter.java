@@ -42,7 +42,16 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ChatMessageActivity.class));
+                // Create an Intent to start the ChatMessageActivity
+                Intent intent = new Intent(context, ChatMessageActivity.class);
+
+                // Pass the contact name to the next activity
+                intent.putExtra("CONTACT_PHONE", contactItemList.get(position).getContactPhone());
+
+                // Start the activity
+                context.startActivity(intent);
+
+                // Notify the listener if needed
                 if (onContactSelectedListener != null) {
                     onContactSelectedListener.onContactSelected();
                 }
